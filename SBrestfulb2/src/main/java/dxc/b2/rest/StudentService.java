@@ -13,7 +13,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StudentService {
-List<Student> students = new ArrayList<>();
+	
+	List<Student> students = new ArrayList<>();
 	
 	
 
@@ -30,6 +31,23 @@ List<Student> students = new ArrayList<>();
 		createStudents();
 		return students;
 	}
+	
+	
+	public Student findStudent(int id) {
+		
+		Student student=  students.stream()   //convert the students list to a stream
+				.filter(s -> s.getId() == id )
+				.findFirst()
+				.get();
+		
+		return student;
+	}
 
+
+	public void addStudent(Student student) {
+		students.add(student);
+		System.out.println("added a student "+ student.getName());
+
+	}
 
 }
